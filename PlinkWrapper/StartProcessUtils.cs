@@ -1,33 +1,41 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Configuration;
 
 namespace PlinkWrapper
 {
-    class StartProcessUtils
+    static class StartProcessUtils
     {
-        // TODO: consider to make config variables
-        const string ClientFullName = @"c:\Program Files\TortoiseGit\bin\TortoiseGitPlink.exe";
-        const string AgentProcessName = "Pageant";
-        const string AgentFullName = @"c:\Program Files\PuTTY\pageant.exe";
-        const string LocalAgentFullName = @"c:\Program Files\TortoiseGit\bin\pageant.exe";
+        const string TortoisePlinkName = "TortoiseGitPlink.exe";
+        const string PageantProcessName = "Pageant";
+        const string PageantName = "pageant.exe";
+        const string DefaultPuttyPath = @"c:\Program Files\PuTTY\";
+        const string DefaultTortoisePath = @"c:\Program Files\TortoiseGit\bin\";
+
+        static string PuttyPath => ConfigurationManager.AppSettings["PuttyPath"] ?? DefaultPuttyPath;
+        static string TortoisePath => ConfigurationManager.AppSettings["TortoisePath"] ?? DefaultTortoisePath;
 
         internal static void StartPlink(string args)
         {
-            RunProcess(ClientFullName, args);
+            var tortoisePlinkFullName = Path.Combine(TortoisePath, TortoisePlinkName);
+            RunProcess(tortoisePlinkFullName, args);
         }
 
         internal static void StartPageant(string keyPath, string args)
         {
-            var agentProcess = Process.GetProcessesByName(AgentProcessName).FirstOrDefault();
+            var agentProcess = Process.GetProcessesByName(PageantProcessName).FirstOrDefault();
 
             if (agentProcess is null)
             {
-               // Dirty trick to de-elevate (if needed) pagent privelleges.
-               // Calling pageant from explorer.
-               RunProcess("explorer", AgentFullName, true);
+                // Dirty trick to de-elevate (if needed) pagent privelleges.
+                // Calling pageant from explorer. Call as separate process (useShellExecute).
+                var puttyPageantFullName = Path.Combine(PuttyPath, PageantName);
+                RunProcess("explorer", puttyPageantFullName, true);
             }
 
-            RunProcess(LocalAgentFullName, $"{keyPath}");
+            var tortoisePageantFullName = Path.Combine(TortoisePath, PageantName);
+            RunProcess(tortoisePageantFullName, $"{keyPath}");
         }
 
         static void RunProcess(string program, string args = "", bool useShellExecute = false)
