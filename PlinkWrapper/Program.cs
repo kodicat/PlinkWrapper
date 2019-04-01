@@ -1,4 +1,6 @@
-﻿namespace PlinkWrapper
+﻿using PlinkWrapper.Factories;
+
+namespace PlinkWrapper
 {
     class Program
     {

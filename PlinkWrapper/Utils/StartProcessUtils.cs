@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Configuration;
 
-namespace PlinkWrapper
+namespace PlinkWrapper.Utils
 {
     static class StartProcessUtils
     {

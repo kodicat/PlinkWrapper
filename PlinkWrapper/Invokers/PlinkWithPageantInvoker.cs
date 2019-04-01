@@ -1,9 +1,11 @@
-﻿namespace PlinkWrapper.Invokers
+﻿using PlinkWrapper.Utils;
+
+namespace PlinkWrapper.Invokers
 {
     class PlinkWithPageantInvoker : IInvoker
     {
-        private readonly string args;
-        private readonly string rsaKeyPath;
+        readonly string args;
+        readonly string rsaKeyPath;
 
         public PlinkWithPageantInvoker(string args, string rsaKeyPath)
         {
