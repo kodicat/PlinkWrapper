@@ -5,26 +5,29 @@ namespace PlinkWrapper
 {
     class StartProcessUtils
     {
-        // ToDo: consider to make config variables
-        const string client = "TortoiseGitPlink.exe";
-        const string agent = "Pageant";
-        const string localAgent = @"c:\Program Files\TortoiseGit\bin\pageant.exe";
+        // TODO: consider to make config variables
+        const string ClientFullName = @"c:\Program Files\TortoiseGit\bin\TortoiseGitPlink.exe";
+        const string AgentProcessName = "Pageant";
+        const string AgentFullName = @"c:\Program Files\PuTTY\pageant.exe";
+        const string LocalAgentFullName = @"c:\Program Files\TortoiseGit\bin\pageant.exe";
 
         internal static void StartPlink(string args)
         {
-            RunProcess(client, args);
+            RunProcess(ClientFullName, args);
         }
 
         internal static void StartPageant(string keyPath, string args)
         {
-            var agentProcess = Process.GetProcessesByName(agent).FirstOrDefault();
+            var agentProcess = Process.GetProcessesByName(AgentProcessName).FirstOrDefault();
 
             if (agentProcess is null)
             {
-                RunProcess(agent, useShellExecute: true);
+               // Dirty trick to de-elevate (if needed) pagent privelleges.
+               // Calling pageant from explorer.
+               RunProcess("explorer", AgentFullName, true);
             }
 
-            RunProcess(localAgent, $"{keyPath}");
+            RunProcess(LocalAgentFullName, $"{keyPath}");
         }
 
         static void RunProcess(string program, string args = "", bool useShellExecute = false)
@@ -38,7 +41,7 @@ namespace PlinkWrapper
 
             using (var process = Process.Start(startInfo))
             {
-                process.WaitForExit();
+                process?.WaitForExit();
             }
         }
     }
