@@ -1,20 +1,20 @@
 ﻿using System.Linq;
-using PlinkWrapper.Invokers;
+using PlinkWrapper.Wrappers;
 
 namespace PlinkWrapper.Factories
 {
-    static class InvokerFactory
+    static class WrapperFactory
     {
-        internal static IInvoker Create(string[] args)
+        internal static IWrapper Create(string[] args)
         {
             var arguments = args.Aggregate((current, next) => current + " " + next);
 
             if (args.Contains("git@github.com"))
             {
-                return GithubInvokerFactory.Create(arguments);
+                return GithubWrapperFactory.Create(arguments);
             }
 
-            return new SimpleInvoker(arguments);
+            return new SimpleWrapper(arguments);
         }
     }
 }

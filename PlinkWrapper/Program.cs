@@ -6,9 +6,9 @@ namespace PlinkWrapper
     {
         static void Main(string[] args)
         {
-            var invoker = InvokerFactory.Create(args);
+            var invoker = WrapperFactory.Create(args);
 
-            invoker.Invoke();
+            invoker.Run();
         }
     }
 }
