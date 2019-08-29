@@ -2,7 +2,7 @@
 
 namespace PlinkWrapper.Utils
 {
-    static class RepositoryUtils
+    static class RegistryUtils
     {
         const string publicKey = "PublicKeyFile";
         const string defaultSessionName = "Default%20Settings";

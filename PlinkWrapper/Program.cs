@@ -1,14 +1,12 @@
-﻿using PlinkWrapper.Factories;
-
-namespace PlinkWrapper
+﻿namespace PlinkWrapper
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var invoker = WrapperFactory.Create(args);
+            var wrapper = WrapperFactory.Create(args);
 
-            invoker.Run();
+            wrapper.Run();
         }
     }
 }

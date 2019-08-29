@@ -15,8 +15,8 @@ namespace PlinkWrapper.Wrappers
 
         public void Run()
         {
-            StartProcessUtils.StartPageant(rsaKeyPath, args);
-            StartProcessUtils.StartPlink($"-i {rsaKeyPath} {args}");
+            ProcessUtils.StartPageant(rsaKeyPath, args);
+            ProcessUtils.StartPlink($"-i {rsaKeyPath} {args}");
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PlinkWrapper.Utils
 {
-    static class StartProcessUtils
+    static class ProcessUtils
     {
         const string TortoisePlinkName = "TortoiseGitPlink.exe";
         const string PageantProcessName = "Pageant";
@@ -24,17 +24,17 @@ namespace PlinkWrapper.Utils
 
         internal static void StartPageant(string keyPath, string args)
         {
-            var agentProcess = Process.GetProcessesByName(PageantProcessName).FirstOrDefault();
+            var pagentProcess = Process.GetProcessesByName(PageantProcessName).FirstOrDefault();
 
-            if (agentProcess is null)
+            var tortoisePageantFullName = Path.Combine(TortoisePath, PageantName);
+
+            if (pagentProcess is null)
             {
                 // Dirty trick to de-elevate (if needed) pagent privelleges.
                 // Calling pageant from explorer. Call as separate process (useShellExecute).
-                var puttyPageantFullName = Path.Combine(PuttyPath, PageantName);
-                RunProcess("explorer", puttyPageantFullName, true);
+                RunProcess("explorer", tortoisePageantFullName, true);
             }
 
-            var tortoisePageantFullName = Path.Combine(TortoisePath, PageantName);
             RunProcess(tortoisePageantFullName, $"{keyPath}");
         }
 

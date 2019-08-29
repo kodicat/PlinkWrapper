@@ -11,6 +11,6 @@ namespace PlinkWrapper.Wrappers
             this.args = args;
         }
 
-        public void Run() => StartProcessUtils.StartPlink(args);
+        public void Run() => ProcessUtils.StartPlink(args);
    }
 }

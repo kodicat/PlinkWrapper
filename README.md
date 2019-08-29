@@ -31,4 +31,4 @@ For example `kodicat` key and `Default Settings` key may be the same as `kodicat
 ### To consider
 This console app was created just for my personal convenience.
 It is full of abuses, hacks ad assumptions. It looks the registry, uses explorer.exe to de-elevate from admin rights.
-It is not ideal solution that does its work.
+It is not ideal solution that simply does its work.

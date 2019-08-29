@@ -64,14 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\GithubWrapperFactory.cs" />
-    <Compile Include="Factories\WrapperFactory.cs" />
+    <Compile Include="WrapperFactory.cs" />
     <Compile Include="Wrappers\IWrapper.cs" />
     <Compile Include="Wrappers\PlinkWithPageantWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Wrappers\SimpleWrapper.cs" />
-    <Compile Include="Utils\RepositoryUtils.cs" />
-    <Compile Include="Utils\StartProcessUtils.cs" />
+    <Compile Include="Utils\RegistryUtils.cs" />
+    <Compile Include="Utils\ProcessUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
