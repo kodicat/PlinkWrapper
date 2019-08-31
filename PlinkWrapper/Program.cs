@@ -4,8 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var wrapper = WrapperFactory.Create(args);
-
+            var wrapper = ProvidersChain.GetWrapper(args);
             wrapper.Run();
         }
     }

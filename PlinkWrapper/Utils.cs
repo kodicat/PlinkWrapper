@@ -1,8 +1,8 @@
 ﻿using Microsoft.Win32;
 
-namespace PlinkWrapper.Utils
+namespace PlinkWrapper
 {
-    static class RegistryUtils
+    static class Utils
     {
         const string publicKey = "PublicKeyFile";
         const string defaultSessionName = "Default%20Settings";
@@ -10,14 +10,15 @@ namespace PlinkWrapper.Utils
 
         internal static string GetPuttySessionKeyPath(string sessionName)
         {
-            if (string.IsNullOrEmpty(sessionName)) return null;
+            if (string.IsNullOrEmpty(sessionName))
+                return null;
 
             var sessionPath = puttySessionsregistryPath + sessionName;
-            return GetValue(puttySessionsregistryPath + sessionName, publicKey)
-                ?? GetValue(puttySessionsregistryPath + defaultSessionName, publicKey);
+            return GetRegistryValue(sessionPath, publicKey)
+                ?? GetRegistryValue(puttySessionsregistryPath + defaultSessionName, publicKey);
         }
 
-        static string GetValue(string registryPath, string value)
+        static string GetRegistryValue(string registryPath, string value)
         {
             using (var session = Registry.CurrentUser.OpenSubKey(registryPath))
             {
