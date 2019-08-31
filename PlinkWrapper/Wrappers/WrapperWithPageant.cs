@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PlinkWrapper.Wrappers
 {
-    class RSAWrapper : WrapperBase
+    class WrapperWithPageant : WrapperBase
     {
         const string PageantProcessName = "Pageant";
         const string PageantName = "pageant.exe";
@@ -12,7 +12,7 @@ namespace PlinkWrapper.Wrappers
         readonly string arguments;
         readonly string rsaKeyPath;
 
-        internal RSAWrapper(string arguments, string rsaKeyPath)
+        internal WrapperWithPageant(string arguments, string rsaKeyPath)
         {
             this.arguments = arguments;
             this.rsaKeyPath = rsaKeyPath;
@@ -34,10 +34,10 @@ namespace PlinkWrapper.Wrappers
             {
                 // Dirty trick to de-elevate (if needed) pagent privelleges.
                 // Calling pageant from explorer. Call as separate process (useShellExecute).
-                RunProcess("explorer", args: tortoisePageantFullName, useShellExecute: true);
+                StartProcess("explorer", args: tortoisePageantFullName, useShellExecute: true);
             }
 
-            RunProcess(tortoisePageantFullName, $"{rsaKeyPath}");
+            StartProcess(tortoisePageantFullName, $"{rsaKeyPath}");
         }
     }
 }

@@ -70,9 +70,9 @@
     <Compile Include="GitProviders\ProviderBase.cs" />
     <Compile Include="ProvidersChain.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="Wrappers\RSAWrapper.cs" />
+    <Compile Include="Wrappers\WrapperWithPageant.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Wrappers\NoRSAWrapper.cs" />
+    <Compile Include="Wrappers\DefaultWrapper.cs" />
     <Compile Include="Wrappers\WrapperBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace PlinkWrapper.GitProviders
 
         protected override IWrapper GetWrapper()
         {
-            return new NoRSAWrapper(arguments);
+            return new DefaultWrapper(arguments);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace PlinkWrapper.GitProviders
 
         protected override IWrapper GetWrapper()
         {
-            return new RSAWrapper(arguments, rsaKeyPath);
+            return new WrapperWithPageant(arguments, rsaKeyPath);
         }
 
         static string GetGithubAccountName(string[] args)

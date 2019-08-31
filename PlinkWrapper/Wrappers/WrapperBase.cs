@@ -23,18 +23,18 @@ namespace PlinkWrapper.Wrappers
             StartPlinkInternal($"-i {rsaKeyPath} {args}");
         }
 
-        protected static void RunProcess(string program, string args = "", bool useShellExecute = false)
+        protected static void StartProcess(string program, string args = "", bool useShellExecute = false)
         {
-            RunProcessInternal(program, args, useShellExecute);
+            StartProcessInternal(program, args, useShellExecute);
         }
 
         static void StartPlinkInternal(string args)
         {
             var tortoisePlinkFullName = Path.Combine(TortoisePath, TortoisePlinkName);
-            RunProcessInternal(tortoisePlinkFullName, args, useShellExecute: false);
+            StartProcessInternal(tortoisePlinkFullName, args, useShellExecute: false);
         }
 
-        static void RunProcessInternal(string program, string args, bool useShellExecute)
+        static void StartProcessInternal(string program, string args, bool useShellExecute)
         {
             var startInfo = new ProcessStartInfo
             {

@@ -1,10 +1,10 @@
 ﻿namespace PlinkWrapper.Wrappers
 {
-    class NoRSAWrapper : WrapperBase
+    class DefaultWrapper : WrapperBase
     {
         readonly string arguments;
 
-        internal NoRSAWrapper(string arguments)
+        internal DefaultWrapper(string arguments)
         {
             this.arguments = arguments;
         }
