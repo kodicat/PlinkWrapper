@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace PlinkWrapper.Wrappers
 {
@@ -34,7 +35,8 @@ namespace PlinkWrapper.Wrappers
             {
                 // Dirty trick to de-elevate (if needed) pagent privelleges.
                 // Calling pageant from explorer. Call as separate process (useShellExecute).
-                StartProcess("explorer", args: tortoisePageantFullName, useShellExecute: true);
+                StartProcess("explorer", args: tortoisePageantFullName);
+                Thread.Sleep(100);
             }
 
             StartProcess(tortoisePageantFullName, $"{rsaKeyPath}");
